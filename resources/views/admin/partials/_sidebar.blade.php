@@ -17,6 +17,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/admin/courses">
+          <i class="bi bi-grid"></i>
+          <span>Courses</span>
+        </a>
+      </li>
+
     </ul>
 
   </aside><!-- End Sidebar-->

@@ -17,4 +17,42 @@ class StudentController extends Controller
             'students' => $students
         ]);
     }
+
+    // method untuk menampilkan from tambah student
+    public function create() {
+        return view('admin.contents.student.create');
+    }
+
+    // method untuk menyimpan data student
+    public function store(Request $request){
+        // validasi data terima
+        $request->validate([
+            'name' => 'required',
+            'nim' => 'required|numeric',
+            'major' => 'required',
+            'class' => 'required'
+        ]);
+
+        // simpan ke databases
+        Student::create([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'major' => $request->major,
+            'class' => $request->class,
+        ]);
+
+        // arahkan ke halaman daftar student index
+        return redirect('/admin/student')->with('pesan', 'berhasil menambahkan data.');
+    }
+
+    // method untuk menampilkan halaman edit
+    public function edit($id){
+        // cari student berdasarkan id
+        $student = Student::find($id);
+
+        // kirim student ke view edit
+        return view('admin.contents.student.edit', [
+            'student' => $student,
+        ]);
+    }
 }
