@@ -25,3 +25,9 @@ Route::post('admin/student/create',[StudentController::class, 'store']);
 
 // Route untuk menampilkan halaman edit student
 Route::get('admin/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+
+// Route untuk menyimpan hasil update student
+Route::put('admin/student/update/{id}', [StudentController::class, 'update']);
+
+// Route untuk menghapus stundent
+Route::delete('admin/student/delete/{id}', [StudentController::class, 'destroy']);

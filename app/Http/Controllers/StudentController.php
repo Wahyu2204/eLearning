@@ -55,4 +55,41 @@ class StudentController extends Controller
             'student' => $student,
         ]);
     }
+
+    // method untuk menyimpan hasil update
+    public function update($id, Request $request){
+        // cari data student berdasarkan id
+        $student = Student::find($id);
+
+        // validasi request
+        $request->validate([
+            'name' => 'required',
+            'nim' => 'required|numeric',
+            'major' => 'required',
+            'class' => 'required'
+        ]);
+
+        // simpan perubahan
+        $student->update([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'major' => $request->major,
+            'class' => $request->class,
+        ]);
+
+        // arahkan ke halaman daftar student index
+        return redirect('/admin/student')->with('pesan', 'berhasil mengedit data.');
+    }
+
+    // method untuk menghapus data
+    public function destroy($id){
+        // cari data student berdasarkan id
+        $student = Student::find($id);
+
+        // hapus student
+        $student->delete();
+
+        // arahkan ke halaman daftar student index
+        return redirect('/admin/student')->with('pesan', 'berhasil mengedit data.');
+    }
 }

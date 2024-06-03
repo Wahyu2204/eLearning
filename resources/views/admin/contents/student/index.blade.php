@@ -32,9 +32,13 @@
                   <td>{{$student->nim}}</td>
                   <td>{{$student->major}}</td>
                   <td>{{$student->class}}</td>
-                  <td>
-                    <a href="{{ route('student.edit', $student ->id) }}" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                  <td class="d-flex">
+                    <a href="/admin/student/edit/{{ $student->id }}" class="btn btn-warning me-2">Edit</a>
+                    <form action="/admin/student/delete/{{ $student->id }}" method="POST">
+                      @method('DELETE')
+                      @csrf
+                      <button class="btn btn-danger" type="submit" onclick="return confirm('Yakin mau di apus?')">Delete</button>
+                    </form>
                   </td>
                 </tr>
               @endforeach

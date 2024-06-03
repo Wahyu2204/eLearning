@@ -15,6 +15,7 @@
             <div class="card-body py-4">
                 <form action="/admin/student/update/{{ $student ->id }}" method="post" class="mt-3">
                   @csrf
+                  @method('PUT')
                     <div class="mb-2">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ $student ->name }}">
