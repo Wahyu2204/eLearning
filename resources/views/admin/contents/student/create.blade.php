@@ -40,6 +40,16 @@
                         <input type="text" name="class" id="class" class="form-control">
                     </div>
 
+                    <div class="mb-2">
+                        <label for="courses_id" class="form-label">Courses</label>
+                        <select name="courses_id" id="courses_id" class="form-select">
+                            <option value="">Pilih Materi</option>
+                            @foreach ($courses as $course)
+                                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="mb-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
