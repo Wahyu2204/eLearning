@@ -59,11 +59,21 @@ class StudentController extends Controller
     public function edit($id){
         // cari student berdasarkan id
         $student = Student::find($id);
+        $courses = Courses::all();
 
         // kirim student ke view edit
         return view('admin.contents.student.edit', [
             'student' => $student,
+            'courses' => $courses
         ]);
+
+
+        // return view('admin.contents.student.edit', [
+        //     'courses' => $courses
+        // ]);
+
+        // return view('admin.contents.student.edit', compact('student', 'courses'));
+
     }
 
     // method untuk menyimpan hasil update
@@ -76,7 +86,8 @@ class StudentController extends Controller
             'name' => 'required',
             'nim' => 'required|numeric',
             'major' => 'required',
-            'class' => 'required'
+            'class' => 'required',
+            'courses_id' => 'nullable|numeric'
         ]);
 
         // simpan perubahan
@@ -85,6 +96,7 @@ class StudentController extends Controller
             'nim' => $request->nim,
             'major' => $request->major,
             'class' => $request->class,
+            'courses_id' => $request->courses_id,
         ]);
 
         // arahkan ke halaman daftar student index
